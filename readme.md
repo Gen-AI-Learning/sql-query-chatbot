@@ -24,7 +24,7 @@ SQL Query Chatbot is an intelligent assistant designed to help users interact wi
 ## Installation
 
 1. Clone the repository:
-   git clone https://github.com/yourusername/sql-query-chatbot.git
+   git clone https://github.com/Gen-AI-Learning/sql-query-chatbot.git
    cd sql-query-chatbot
 
 2. Create a virtual environment:
