@@ -1,11 +1,16 @@
 
 import os
 import re
+
 import streamlit as st
+import random
+import string
+import time
+
 import sqlite3
 import uuid
 
-from utilities.convertToList import convert_to_list
+from utils.convert_to_list import convert_to_list
 from typing import List
 
 
@@ -26,6 +31,7 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 
 from langchain.prompts import MessagesPlaceholder
 from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
+
 
 
 
@@ -123,7 +129,7 @@ class MoreDataException(Exception):
 def safe_sql_execute(query: str) -> str:
   # Check if the query contains INSERT, DELETE, or any other unwanted operations
     if re.search(r'\b(INSERT|DELETE|UPDATE|DROP|TRUNCATE|ALTER)\b', query, re.IGNORECASE):
-        return "I'm sorry, but I can't perform INSERT, DELETE, or other data-modifying operations. I'm only able to retrieve information using SELECT queries. Could you please rephrase your request as a question about existing data?"
+        return f"I'm sorry, but I can't perform INSERT, DELETE, or other data-modifying operations. I'm only able to retrieve information using SELECT queries. But I can provide the query for your question: {query}"
     
     try:
       result = db.run(query)  
@@ -179,13 +185,21 @@ memory = ChatMessageHistory(session_id="test-session")
 # Create a custom prompt template
 prompt_template = ChatPromptTemplate.from_messages([
     SystemMessagePromptTemplate.from_template(
-        "You are an AI assistant that helps with SQL queries. "
-        "Before formulating queries, use the ListTablesTool to see available tables. "
-        "Then, use the GetCachedTableSchemaTool to get schema information for specific tables you need. "
-        "Use the SafeSQLQueryTool to execute queries. "
-        "Consider the previous conversation when answering. "
-        "If you don't know the answer, say that you don't know. "
-        "If the result contains more than 10 records, strictly prohibit providing the records."
+        "You are an AI assistant specializing in SQL queries. Follow these steps for each request:"
+        "\n1. Use spelling_correction to correct any potential spelling mistakes in the user's query regarding table names, column names, and predefined values."
+    "\n2. Use ListTablesTool to identify available tables."
+    "\n3. Use GetCachedTableSchemaTool to retrieve schema information for relevant tables."
+    "\n4. Analyze the user's request and the schema to formulate an appropriate SQL query."
+    "\n5. For SELECT queries, use SafeSQLQueryTool to execute and retrieve results."
+    "\n6. For non-SELECT queries (INSERT, UPDATE, DELETE, etc.), formulate the query but do not execute it."
+    "\n7. Always include the SQL query in your response, whether executed or not."
+    "\n8. Limit result outputs to a maximum of 10 records."
+    "\n9. Consider the conversation history when formulating responses."
+    "\n10. If you're unsure or don't have enough information, ask for clarification."
+    "\n11. Explain your reasoning and any assumptions made when formulating queries."
+    "\n12. If a query would return more than 10 records, mention this in your response and suggest ways to limit the result set."
+    "\n13. Provide clear explanations of the query structure and purpose."
+    "\nRemember: Your primary goal is to assist with SQL queries while adhering to these guidelines."
     ),
     MessagesPlaceholder(variable_name="chat_history"),
     HumanMessagePromptTemplate.from_template("{input}"),
@@ -229,51 +243,54 @@ def process_user_input(user_input,session_id):
     return f"An error occurred: {str(e)}. Could you please rephrase your query or ask about a different aspect of the data?"
 
 
-st.title("SQL Query Chatbot")
-st.write("Welcome to the Safe SQL Query Assistant!")
-st.write("You can ask questions about the database, and I'll try to answer them.")
-st.write("Note: This assistant can only perform SELECT queries and is limited to returning 10 records.")
-st.write("Type 'clear' or 'exit' to start a new chat.")
+# App title and description
+st.title("Smart Query Chatbot")
+st.write("""
+<style>
+    .main {background-color: #f1f3f4;}
+    .css-18e3th9 {padding-top: 3rem; padding-bottom: 3rem;}
+    .st-bb {background-color: #ffffff; border: 1px solid #e0e0e0; padding: 10px; border-radius: 8px;}
+    .st-dx {border: 1px solid #e0e0e0; border-radius: 8px;}
+    .stButton>button {background-color: #1a73e8; color: #ffffff; border-radius: 5px; padding: 10px 20px;}
+    .stTextInput>div>div>input {border: 1px solid #e0e0e0; border-radius: 8px; padding: 10px;}
+    .stTextInput>div>div {border: 1px solid #e0e0e0; border-radius: 8px;}
+</style>
+""", unsafe_allow_html=True)
+st.write("Welcome to the Safe SQL Query Assistant! You can ask questions about the database, and I'll try to answer them. Note: This assistant can only perform SELECT queries and is limited to returning 10 records. Type 'clear' or 'exit' to start a new chat.")
 
-
+# Initialize session state
 if "session_id" not in st.session_state:
-  st.session_state.session_id = generate_session_id()
-# Initialize chat history
-if "messages" not in st.session_state:
-   st.session_state.messages = []
+    st.session_state.session_id = generate_session_id()
 
-# Display chat messages from history on app rerun
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# Display chat history
 for message in st.session_state.messages:
-   with st.chat_message(message["role"]):
-      st.markdown(message["content"])
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
 # React to user input
-if prompt:= st.chat_input("What would you like to know about the database?"):
-  # Display user message in chat message container
-  with st.chat_message("user"):
-    st.markdown(prompt)
-  # Add user message to chat history
-  st.session_state.messages.append({"role":"user","content":prompt})
+if prompt := st.chat_input("What would you like to know about the database?"):
+    with st.chat_message("user"):
+        st.markdown(prompt)
+    st.session_state.messages.append({"role": "user", "content": prompt})
 
-  response = process_user_input(prompt, st.session_state.session_id)
+    # Show a spinner while processing the input
+    with st.spinner("Thinking..."):
+        response = process_user_input(prompt, st.session_state.session_id)
 
-  if response == "CLEAR_SESSION":
-    # Clear the chat history and generate a new session ID
-    st.session_state.messages = []
-    st.session_state.session_id = generate_session_id()
-    st.experimental_rerun()
-  else:
-    # Display assistant response in chat message container
-    with st.chat_message("assistant"):
-      st.markdown(response)
-    # Add assistant response to chat history
-    st.session_state.messages.append({"role": "assistant", "content": response})
+    if response == "CLEAR_SESSION":
+        st.session_state.messages = []
+        st.session_state.session_id = generate_session_id()
+        st.experimental_rerun()
+    else:
+        with st.chat_message("assistant"):
+            st.markdown(response)
+        st.session_state.messages.append({"role": "assistant", "content": response})
 
 # Add a button to clear the session
 if st.button("Clear Session"):
-  st.session_state.messages = []
-  st.session_state.session_id = generate_session_id()
-  st.experimental_rerun()
-
-
-
+    st.session_state.messages = []
+    st.session_state.session_id = generate_session_id()
+    st.experimental_rerun()

@@ -74,7 +74,7 @@ def list_tables(*args, **kwargs) -> str:
 def safe_sql_execute(query: str) -> str:
   # Check if the query contains INSERT, DELETE, or any other unwanted operations
     if re.search(r'\b(INSERT|DELETE|UPDATE|DROP|TRUNCATE|ALTER)\b', query, re.IGNORECASE):
-        return "I'm sorry, but I can't perform INSERT, DELETE, or other data-modifying operations. I'm only able to retrieve information using SELECT queries. Could you please rephrase your request as a question about existing data?"
+        return f"I'm sorry, but I can't perform INSERT, DELETE, or other data-modifying operations. I'm only able to retrieve information using SELECT queries. But I can provide the query for your question: {query}"
     
     try:
       result = db.run(query)  
