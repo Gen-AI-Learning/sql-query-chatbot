@@ -3,6 +3,7 @@ from langchain.agents import create_tool_calling_agent, AgentExecutor
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate, MessagesPlaceholder
+from langchain_core.chat_history import (BaseChatMessageHistory, InMemoryChatMessageHistory)
 
 
 
@@ -59,18 +60,27 @@ agent_executor = AgentExecutor(
    )
 
 # Function to get or create ChatMessageHistory for a session
-def get_chat_history(session_id: str) -> ChatMessageHistory:
-  return ChatMessageHistory(session_id=session_id)
+# def get_chat_history(session_id: str) -> ChatMessageHistory:
+#   return ChatMessageHistory(session_id=session_id)
+
+store = {}
+def get_chat_history(session_id: str) -> BaseChatMessageHistory:
+  if session_id not in store:
+    store[session_id] = InMemoryChatMessageHistory()
+  return store[session_id]
+  
 
 agent_with_chat_history = RunnableWithMessageHistory(
    agent_executor,
    get_chat_history,
    input_messages_key="input",
-   history_messages_key="chat_history"
+   history_messages_key="chat_history",
 
 )
 
 def process_user_input(user_input:str, session_id:str):
+
+  print(f"My session Id: {session_id}")
   try:
     if user_input.lower() in ["clear", "exit"]:
       return "CLEAR_SESSION"
