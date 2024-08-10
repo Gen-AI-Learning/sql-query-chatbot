@@ -1,7 +1,7 @@
 import sqlite3
 import re
 
-from database.connection import db
+from database.connection import refreshable_db
 from utils.convert_to_list import convert_to_list
 from config.settings import DB_CONN_STRING
 from exceptions.more_data_exception import MoreDataException
@@ -12,6 +12,8 @@ from typing import List
 def get_table_names() -> List[str]:
   try:
     # This SQL query works for SQLite, MySQL, and PostgreSQL
+    refreshable_db.force_refresh()
+    db = refreshable_db.get_db()
     query = "SELECT name FROM sqlite_master WHERE type='table';"
     result = convert_to_list(db.run(query))
     if isinstance(result, str):
@@ -66,6 +68,7 @@ def get_cached_table_schema(table_name: str) -> str:
 
 
 def list_tables(*args, **kwargs) -> str:
+  print(f"List table arguments{args} and {kwargs}" )
   tables = get_table_names()
   print(f"Available tables: {', '.join(tables)}")
   return f"Available tables: {', '.join(tables)}"
@@ -77,6 +80,7 @@ def safe_sql_execute(query: str) -> str:
         return f"I'm sorry, but I can't perform INSERT, DELETE, or other data-modifying operations. I'm only able to retrieve information using SELECT queries. But I can provide the query for your question: {query}"
     
     try:
+      db = refreshable_db.get_db()
       result = db.run(query)  
      # Check if the result is a list
       if isinstance(result_list:=convert_to_list(result), list):

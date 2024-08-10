@@ -9,6 +9,7 @@ from langchain_core.chat_history import (BaseChatMessageHistory, InMemoryChatMes
 
 from ai.tools import safe_sql_tool, cached_table_schema_tool, list_tables_tool, spelling_correction_tool
 from config.settings import AZURE_OPENAI_API_VERSION, AZURE_OPENAI_CHAT_DEPLOYMENT_NAME
+from database.connection import refreshable_db
 
 
 
@@ -67,6 +68,7 @@ store = {}
 def get_chat_history(session_id: str) -> BaseChatMessageHistory:
   if session_id not in store:
     store[session_id] = InMemoryChatMessageHistory()
+  print("Memory:", store[session_id])
   return store[session_id]
   
 
@@ -82,6 +84,7 @@ def process_user_input(user_input:str, session_id:str):
 
   print(f"My session Id: {session_id}")
   try:
+    refreshable_db.force_refresh()
     if user_input.lower() in ["clear", "exit"]:
       return "CLEAR_SESSION"
     config = {"configurable": {"session_id":session_id }}
