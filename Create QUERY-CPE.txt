@@ -1,0 +1,88 @@
+
+CREATE TABLE Compliance (
+    ComplianceID TEXT PRIMARY KEY,
+    ComplianceType TEXT CHECK (ComplianceType IN ('Accounting', 'Technical', 'Reporting', 'Tax', 'Functional')),
+    ComplianceTypeId TEXT UNIQUE DEFAULT 'NA',
+    MinCredits INTEGER
+);
+
+
+CREATE TABLE Employee (
+    EmpId TEXT PRIMARY KEY,
+    UserName TEXT,
+    MailId TEXT,
+    UserStatus TEXT CHECK (UserStatus IN ('Active', 'LOP', 'Terminated')),
+    UserType TEXT CHECK (UserType IN ('Contractual', 'Partner', 'Permanent')),
+    ComplianceID TEXT,
+    FOREIGN KEY (ComplianceID) REFERENCES Compliance(ComplianceID)
+);
+
+
+
+
+CREATE TABLE Instructor (
+    instructorId TEXT PRIMARY KEY,
+    instructorName TEXT NOT NULL,
+    isExternal INTEGER CHECK (isExternal IN (0, 1)) NOT NULL,
+    empId TEXT,
+    FOREIGN KEY (empId) REFERENCES Employee(EmpId)
+);
+
+
+
+
+
+CREATE TABLE Creator (
+    creatorId TEXT PRIMARY KEY,
+    creatorName TEXT NOT NULL,
+    isExternal INTEGER CHECK (isExternal IN (0, 1)) NOT NULL,
+    employeeId TEXT,
+    FOREIGN KEY (employeeId) REFERENCES Employee(EmpId)
+);
+
+
+
+
+
+
+CREATE TABLE UserDashboard (
+    UserId TEXT,
+    ReportingPeriod TEXT,
+    RPStartDate DATE,
+    RPEndDate DATE,
+    FOREIGN KEY (UserId) REFERENCES Employee(EmpId)
+);
+
+
+CREATE TABLE Course (
+    Title TEXT,
+    CourseCode TEXT PRIMARY KEY,
+    Type TEXT CHECK (Type IN ('Internal', 'External', 'Local', 'Online')),
+    StartTime DATETIME, -- Using DATETIME to include both date and time
+    EndTime DATETIME,   -- Using DATETIME to include both date and time
+    MaxCPE INTEGER,
+    Status TEXT CHECK (Status IN ('In Review', 'Live', 'Retired')),
+    StatusDate DATE,    -- Using DATE if only the date part is needed
+    ComplianceID TEXT,
+    InstructorId TEXT,
+    CreatorId TEXT,
+    FOREIGN KEY (ComplianceID) REFERENCES Compliance(ComplianceID),
+    FOREIGN KEY (InstructorId) REFERENCES Instructor(instructorId),
+    FOREIGN KEY (CreatorId) REFERENCES Creator(creatorId)
+);
+
+
+CREATE TABLE Credit (
+    CourseCode TEXT,
+    UserId TEXT,
+    AwardedCPE INTEGER CHECK (AwardedCPE >= 0), -- Ensures CPE is a non-negative integer
+    CompletionDate TEXT, -- Storing datetime as TEXT in 'YYYY-MM-DD HH:MM:SS' format
+    AwardType TEXT CHECK (AwardType IN ('Learner', 'Instructor', 'Reviewer')),
+    IsProcessed BOOLEAN, -- BOOLEAN type to represent true/false
+    FOREIGN KEY (CourseCode) REFERENCES Course(CourseCode),
+    FOREIGN KEY (UserId) REFERENCES Employee(EmpId), -- Assuming the reference table is Employee
+    CHECK (AwardedCPE >= 0) -- Ensures that AwardedCPE matches the CPE allocated for each CourseCode
+);
+
+
+

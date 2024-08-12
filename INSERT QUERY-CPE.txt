@@ -1,0 +1,206 @@
+INSERT INTO Compliance (ComplianceID, ComplianceType, ComplianceTypeId, MinCredits) VALUES ('CMPID001', 'Accounting', 'NA', 25);
+INSERT INTO Compliance (ComplianceID, ComplianceType, ComplianceTypeId, MinCredits) VALUES ('CMPID002', 'Technical', 'NA', 40);
+INSERT INTO Compliance (ComplianceID, ComplianceType, ComplianceTypeId, MinCredits) VALUES ('CMPID003', 'Reporting', 'NA', 55);
+INSERT INTO Compliance (ComplianceID, ComplianceType, ComplianceTypeId, MinCredits) VALUES ('CMPID004', 'Tax', 'NA', 70);
+INSERT INTO Compliance (ComplianceID, ComplianceType, ComplianceTypeId, MinCredits) VALUES ('CMPID005', 'Functional', 'NA', 85);
+
+
+
+
+----------
+INSERT INTO Employee (EmpId, UserName, MailId, UserStatus, UserType, ComplianceID) VALUES
+('EMP001', 'John Doe', 'johndoe@company.com', 'Active', 'Permanent', 'CMPID001'),
+('EMP002', 'Jane Smith', 'janesmith@company.com', 'LOP', 'Contractual', 'CMPID002'),
+('EMP003', 'Alice Johnson', 'alicejohnson@company.com', 'Terminated', 'Partner', 'CMPID003'),
+('EMP004', 'Bob Brown', 'bobbrown@company.com', 'Active', 'Permanent', 'CMPID004'),
+('EMP005', 'Carol White', 'carolwhite@company.com', 'LOP', 'Contractual', 'CMPID005'),
+('EMP006', 'David Wilson', 'davidwilson@company.com', 'Active', 'Permanent', 'CMPID001'),
+('EMP007', 'Eva Harris', 'evaharris@company.com', 'LOP', 'Partner', 'CMPID002'),
+('EMP008', 'Frank Lewis', 'franklewis@company.com', 'Terminated', 'Contractual', 'CMPID003'),
+('EMP009', 'Grace Martin', 'gracemartin@company.com', 'Active', 'Permanent', 'CMPID004'),
+('EMP010', 'Henry Lee', 'henrylee@company.com', 'LOP', 'Partner', 'CMPID005'),
+('EMP011', 'Ivy Clark', 'ivyclark@company.com', 'Active', 'Contractual', 'CMPID001'),
+('EMP012', 'Jack Davis', 'jackdavis@company.com', 'Terminated', 'Permanent', 'CMPID002'),
+('EMP013', 'Kara Adams', 'karaadams@company.com', 'LOP', 'Partner', 'CMPID003'),
+('EMP014', 'Liam Turner', 'liamturner@company.com', 'Active', 'Contractual', 'CMPID004'),
+('EMP015', 'Mia Thompson', 'miathompson@company.com', 'Terminated', 'Permanent', 'CMPID005'),
+('EMP016', 'Noah Walker', 'noahwalker@company.com', 'Active', 'Contractual', 'CMPID001'),
+('EMP017', 'Olivia Martinez', 'oliviamartinez@company.com', 'LOP', 'Partner', 'CMPID002'),
+('EMP018', 'Paul Hernandez', 'paulhernandez@company.com', 'Terminated', 'Contractual', 'CMPID003'),
+('EMP019', 'Quinn Robinson', 'quinnrobinson@company.com', 'Active', 'Permanent', 'CMPID004'),
+('EMP020', 'Riley Young', 'rileyyoung@company.com', 'LOP', 'Contractual', 'CMPID005'),
+('EMP021', 'Samantha Scott', 'samanthascott@company.com', 'Active', 'Permanent', 'CMPID001'),
+('EMP022', 'Thomas Green', 'thomasgreen@company.com', 'Terminated', 'Contractual', 'CMPID002'),
+('EMP023', 'Ursula King', 'ursulaking@company.com', 'LOP', 'Partner', 'CMPID003'),
+('EMP024', 'Victor Wright', 'victorwright@company.com', 'Active', 'Permanent', 'CMPID004'),
+('EMP025', 'Wendy Walker', 'wendywalker@company.com', 'LOP', 'Contractual', 'CMPID005'),
+('EMP026', 'Xander Hill', 'xanderhill@company.com', 'Active', 'Permanent', 'CMPID001'),
+('EMP027', 'Yara Adams', 'yaraadams@company.com', 'Terminated', 'Partner', 'CMPID002'),
+('EMP028', 'Zane Nelson', 'zanenelson@company.com', 'LOP', 'Contractual', 'CMPID003'),
+('EMP029', 'Abby Carter', 'abbycarter@company.com', 'Active', 'Permanent', 'CMPID004'),
+('EMP030', 'Ben Reed', 'benreed@company.com', 'LOP', 'Contractual', 'CMPID005'),
+('EMP031', 'Chloe Bell', 'chloebell@company.com', 'Active', 'Partner', 'CMPID001'),
+('EMP032', 'Daniel Wood', 'danielwood@company.com', 'Terminated', 'Contractual', 'CMPID002'),
+('EMP033', 'Ella Rivera', 'ellarivera@company.com', 'LOP', 'Permanent', 'CMPID003'),
+('EMP034', 'Finn Rogers', 'finnrogers@company.com', 'Active', 'Contractual', 'CMPID004'),
+('EMP035', 'Gina Bailey', 'ginabailey@company.com', 'LOP', 'Partner', 'CMPID005'),
+('EMP036', 'Hank Cooper', 'hankcooper@company.com', 'Active', 'Permanent', 'CMPID001'),
+('EMP037', 'Iris Hughes', 'irishughes@company.com', 'Terminated', 'Contractual', 'CMPID002'),
+('EMP038', 'Jake Flores', 'jakeflores@company.com', 'LOP', 'Partner', 'CMPID003'),
+('EMP039', 'Luna Morris', 'lunamorris@company.com', 'Active', 'Permanent', 'CMPID004'),
+('EMP040', 'Mason Sanders', 'masonsanders@company.com', 'LOP', 'Contractual', 'CMPID005'),
+('EMP041', 'Nora Cook', 'noracook@company.com', 'Active', 'Partner', 'CMPID001'),
+('EMP042', 'Oscar Bailey', 'oscargbailey@company.com', 'Terminated', 'Permanent', 'CMPID002'),
+('EMP043', 'Penny Bell', 'pennybell@company.com', 'LOP', 'Contractual', 'CMPID003'),
+('EMP044', 'Quincy Lee', 'quincylee@company.com', 'Active', 'Permanent', 'CMPID004'),
+('EMP045', 'Rita Kim', 'ritakim@company.com', 'LOP', 'Contractual', 'CMPID005'),
+('EMP046', 'Sam Patel', 'sampatel@company.com', 'Active', 'Permanent', 'CMPID001'),
+('EMP047', 'Tina Young', 'tinayoung@company.com', 'Terminated', 'Contractual', 'CMPID002'),
+('EMP048', 'Ulysses Gray', 'ulyssesgray@company.com', 'LOP', 'Partner', 'CMPID003'),
+('EMP049', 'Vera Ward', 'veraward@company.com', 'Active', 'Permanent', 'CMPID004'),
+('EMP050', 'Will Johnson', 'willjohnson@company.com', 'LOP', 'Contractual', 'CMPID005');
+
+
+
+-----------------
+
+
+INSERT INTO Instructor (instructorId, instructorName, isExternal, empId) VALUES
+('INSTRUCTOR001', 'Alice Johnson', 0, 'EMP001'),
+('INSTRUCTOR002', 'Bob Brown', 0, 'EMP002'),
+('INSTRUCTOR003', 'Carol White', 1, NULL),
+('INSTRUCTOR004', 'David Wilson', 0, 'EMP003'),
+('INSTRUCTOR005', 'Eva Harris', 1, NULL),
+('INSTRUCTOR006', 'Frank Lewis', 0, 'EMP004'),
+('INSTRUCTOR007', 'Grace Martin', 1, NULL),
+('INSTRUCTOR008', 'Henry Lee', 0, 'EMP005'),
+('INSTRUCTOR009', 'Ivy Clark', 0, 'EMP006'),
+('INSTRUCTOR010', 'Jack Davis', 1, NULL),
+('INSTRUCTOR011', 'Kara Adams', 0, 'EMP007'),
+('INSTRUCTOR012', 'Liam Turner', 1, NULL),
+('INSTRUCTOR013', 'Mia Thompson', 0, 'EMP008'),
+('INSTRUCTOR014', 'Noah Walker', 1, NULL),
+('INSTRUCTOR015', 'Olivia Martinez', 0, 'EMP009');
+
+
+----------------------------------
+
+INSERT INTO Creator (creatorId, creatorName, isExternal, employeeId) VALUES
+('CREATOR001', 'Emily Davis', 0, 'EMP001'),
+('CREATOR002', 'Michael Brown', 1, NULL),
+('CREATOR003', 'Sarah Wilson', 0, 'EMP002'),
+('CREATOR004', 'Daniel Lee', 1, NULL),
+('CREATOR005', 'Sophia Clark', 0, 'EMP003'),
+('CREATOR006', 'James Taylor', 0, 'EMP004'),
+('CREATOR007', 'Olivia Johnson', 1, NULL),
+('CREATOR008', 'William Harris', 0, 'EMP005'),
+('CREATOR009', 'Ava Martin', 1, NULL),
+('CREATOR010', 'Ethan Lewis', 0, 'EMP006'),
+('CREATOR011', 'Isabella Walker', 1, NULL),
+('CREATOR012', 'Mason Scott', 0, 'EMP007'),
+('CREATOR013', 'Mia Adams', 1, NULL),
+('CREATOR014', 'Alexander White', 0, 'EMP008'),
+('CREATOR015', 'Charlotte Davis', 0, 'EMP009');
+
+
+
+
+
+--------------------------------------
+
+
+INSERT INTO Course (Title, CourseCode, Type, StartTime, EndTime, MaxCPE, Status, StatusDate, ComplianceID, InstructorId, CreatorId) VALUES
+('Course Title 1', 'CRSE001', 'Internal', '2024-09-01 09:00:00', '2024-09-01 17:00:00', 5, 'Live', '2024-08-01', 'CMPID001', 'INSTRUCTOR001', 'CREATOR001'),
+('Course Title 2', 'CRSE002', 'External', '2024-09-02 09:00:00', '2024-09-02 17:00:00', 6, 'In Review', '2024-08-02', 'CMPID002', 'INSTRUCTOR002', 'CREATOR002'),
+('Course Title 3', 'CRSE003', 'Local', '2024-09-03 09:00:00', '2024-09-03 17:00:00', 7, 'Live', '2024-08-03', 'CMPID003', 'INSTRUCTOR003', 'CREATOR003'),
+('Course Title 4', 'CRSE004', 'Online', '2024-09-04 09:00:00', '2024-09-04 17:00:00', 8, 'Retired', '2024-08-04', 'CMPID004', 'INSTRUCTOR004', 'CREATOR004'),
+('Course Title 5', 'CRSE005', 'Internal', '2024-09-05 09:00:00', '2024-09-05 17:00:00', 9, 'Live', '2024-08-05', 'CMPID005', 'INSTRUCTOR005', 'CREATOR005'),
+('Course Title 6', 'CRSE006', 'External', '2024-09-06 09:00:00', '2024-09-06 17:00:00', 10, 'In Review', '2024-08-06', 'CMPID001', 'INSTRUCTOR006', 'CREATOR001'),
+('Course Title 7', 'CRSE007', 'Local', '2024-09-07 09:00:00', '2024-09-07 17:00:00', 5, 'Live', '2024-08-07', 'CMPID002', 'INSTRUCTOR007', 'CREATOR002'),
+('Course Title 8', 'CRSE008', 'Online', '2024-09-08 09:00:00', '2024-09-08 17:00:00', 6, 'Retired', '2024-08-08', 'CMPID003', 'INSTRUCTOR008', 'CREATOR003'),
+('Course Title 9', 'CRSE009', 'Internal', '2024-09-09 09:00:00', '2024-09-09 17:00:00', 7, 'Live', '2024-08-09', 'CMPID004', 'INSTRUCTOR009', 'CREATOR004'),
+('Course Title 10', 'CRSE010', 'External', '2024-09-10 09:00:00', '2024-09-10 17:00:00', 8, 'In Review', '2024-08-10', 'CMPID005', 'INSTRUCTOR010', 'CREATOR005'),
+('Course Title 11', 'CRSE011', 'Local', '2024-09-11 09:00:00', '2024-09-11 17:00:00', 9, 'Live', '2024-08-11', 'CMPID001', 'INSTRUCTOR001', 'CREATOR006'),
+('Course Title 12', 'CRSE012', 'Online', '2024-09-12 09:00:00', '2024-09-12 17:00:00', 10, 'Retired', '2024-08-12', 'CMPID002', 'INSTRUCTOR002', 'CREATOR007'),
+('Course Title 13', 'CRSE013', 'Internal', '2024-09-13 09:00:00', '2024-09-13 17:00:00', 5, 'Live', '2024-08-13', 'CMPID003', 'INSTRUCTOR003', 'CREATOR008'),
+('Course Title 14', 'CRSE014', 'External', '2024-09-14 09:00:00', '2024-09-14 17:00:00', 6, 'In Review', '2024-08-14', 'CMPID004', 'INSTRUCTOR004', 'CREATOR009'),
+('Course Title 15', 'CRSE015', 'Local', '2024-09-15 09:00:00', '2024-09-15 17:00:00', 7, 'Live', '2024-08-15', 'CMPID005', 'INSTRUCTOR005', 'CREATOR010'),
+('Course Title 16', 'CRSE016', 'Online', '2024-09-16 09:00:00', '2024-09-16 17:00:00', 8, 'Retired', '2024-08-16', 'CMPID001', 'INSTRUCTOR006', 'CREATOR001'),
+('Course Title 17', 'CRSE017', 'Internal', '2024-09-17 09:00:00', '2024-09-17 17:00:00', 9, 'Live', '2024-08-17', 'CMPID002', 'INSTRUCTOR007', 'CREATOR002'),
+('Course Title 18', 'CRSE018', 'External', '2024-09-18 09:00:00', '2024-09-18 17:00:00', 10, 'In Review', '2024-08-18', 'CMPID003', 'INSTRUCTOR008', 'CREATOR003'),
+('Course Title 19', 'CRSE019', 'Local', '2024-09-19 09:00:00', '2024-09-19 17:00:00', 5, 'Live', '2024-08-19', 'CMPID004', 'INSTRUCTOR009', 'CREATOR004'),
+('Course Title 20', 'CRSE020', 'Online', '2024-09-20 09:00:00', '2024-09-20 17:00:00', 6, 'Retired', '2024-08-20', 'CMPID005', 'INSTRUCTOR010', 'CREATOR005'),
+('Course Title 21', 'CRSE021', 'Internal', '2024-09-21 09:00:00', '2024-09-21 17:00:00', 7, 'Live', '2024-08-21', 'CMPID001', 'INSTRUCTOR001', 'CREATOR006'),
+('Course Title 22', 'CRSE022', 'External', '2024-09-22 09:00:00', '2024-09-22 17:00:00', 8, 'In Review', '2024-08-22', 'CMPID002', 'INSTRUCTOR002', 'CREATOR007'),
+('Course Title 23', 'CRSE023', 'Local', '2024-09-23 09:00:00', '2024-09-23 17:00:00', 9, 'Live', '2024-08-23', 'CMPID003', 'INSTRUCTOR003', 'CREATOR008'),
+('Course Title 24', 'CRSE024', 'Online', '2024-09-24 09:00:00', '2024-09-24 17:00:00', 10, 'Retired', '2024-08-24', 'CMPID004', 'INSTRUCTOR004', 'CREATOR009'),
+('Course Title 25', 'CRSE025', 'Internal', '2024-09-25 09:00:00', '2024-09-25 17:00:00', 5, 'Live', '2024-08-25', 'CMPID005', 'INSTRUCTOR005', 'CREATOR010'),
+('Course Title 26', 'CRSE026', 'External', '2024-09-26 09:00:00', '2024-09-26 17:00:00', 6, 'In Review', '2024-08-26', 'CMPID001', 'INSTRUCTOR006', 'CREATOR001'),
+('Course Title 27', 'CRSE027', 'Local', '2024-09-27 09:00:00', '2024-09-27 17:00:00', 7, 'Live', '2024-08-27', 'CMPID002', 'INSTRUCTOR007', 'CREATOR002'),
+('Course Title 28', 'CRSE028', 'Online', '2024-09-28 09:00:00', '2024-09-28 17:00:00', 8, 'Retired', '2024-08-28', 'CMPID003', 'INSTRUCTOR008', 'CREATOR003'),
+('Course Title 29', 'CRSE029', 'Internal', '2024-09-29 09:00:00', '2024-09-29 17:00:00', 9, 'Live', '2024-08-29', 'CMPID004', 'INSTRUCTOR009', 'CREATOR004'),
+('Course Title 30', 'CRSE030', 'External', '2024-09-30 09:00:00', '2024-09-30 17:00:00', 10, 'In Review', '2024-08-30', 'CMPID005', 'INSTRUCTOR010', 'CREATOR005');
+
+
+
+
+-----------------------
+
+INSERT INTO Credit (CourseCode, UserId, AwardedCPE, CompletionDate, AwardType, IsProcessed) VALUES
+('CRSE001', 'EMP001', 5, '2024-09-01 17:00:00', 'Learner', 1),
+('CRSE002', 'EMP001', 6, '2024-09-02 17:00:00', 'Learner', 1),
+('CRSE003', 'EMP001', 7, '2024-09-03 17:00:00', 'Learner', 1),
+('CRSE004', 'EMP001', 8, '2024-09-04 17:00:00', 'Learner', 1),
+('CRSE005', 'EMP001', 9, '2024-09-05 17:00:00', 'Learner', 1),
+('CRSE006', 'EMP001', 10, '2024-09-06 17:00:00', 'Learner', 1),
+('CRSE007', 'EMP002', 5, '2024-09-07 17:00:00', 'Instructor', 0),
+('CRSE008', 'EMP002', 6, '2024-09-08 17:00:00', 'Instructor', 1),
+('CRSE009', 'EMP002', 7, '2024-09-09 17:00:00', 'Instructor', 0),
+('CRSE010', 'EMP002', 8, '2024-09-10 17:00:00', 'Instructor', 1),
+('CRSE011', 'EMP003', 9, '2024-09-11 17:00:00', 'Reviewer', 1),
+('CRSE012', 'EMP003', 10, '2024-09-12 17:00:00', 'Reviewer', 0),
+('CRSE013', 'EMP004', 5, '2024-09-13 17:00:00', 'Learner', 1),
+('CRSE014', 'EMP004', 6, '2024-09-14 17:00:00', 'Learner', 1),
+('CRSE015', 'EMP004', 7, '2024-09-15 17:00:00', 'Learner', 1),
+('CRSE016', 'EMP004', 8, '2024-09-16 17:00:00', 'Learner', 1),
+('CRSE017', 'EMP005', 9, '2024-09-17 17:00:00', 'Instructor', 0),
+('CRSE018', 'EMP005', 10, '2024-09-18 17:00:00', 'Instructor', 1),
+('CRSE019', 'EMP006', 5, '2024-09-19 17:00:00', 'Reviewer', 1),
+('CRSE020', 'EMP006', 6, '2024-09-20 17:00:00', 'Reviewer', 0),
+('CRSE021', 'EMP007', 7, '2024-09-21 17:00:00', 'Learner', 1),
+('CRSE022', 'EMP007', 8, '2024-09-22 17:00:00', 'Learner', 1),
+('CRSE023', 'EMP007', 9, '2024-09-23 17:00:00', 'Learner', 1),
+('CRSE024', 'EMP007', 10, '2024-09-24 17:00:00', 'Learner', 1),
+('CRSE025', 'EMP008', 5, '2024-09-25 17:00:00', 'Instructor', 0),
+('CRSE026', 'EMP008', 6, '2024-09-26 17:00:00', 'Instructor', 1),
+('CRSE027', 'EMP009', 7, '2024-09-27 17:00:00', 'Reviewer', 1),
+('CRSE028', 'EMP009', 8, '2024-09-28 17:00:00', 'Reviewer', 0),
+('CRSE029', 'EMP010', 9, '2024-09-29 17:00:00', 'Learner', 1),
+('CRSE030', 'EMP010', 10, '2024-09-30 17:00:00', 'Learner', 0);
+
+
+
+
+--------  
+INSERT INTO UserDashboard (UserId, ReportingPeriod, RPStartDate, RPEndDate) VALUES
+('EMP001', 'reporting_prd_001', '2023-01-01', '2024-01-01'),
+('EMP002', 'reporting_prd_001', '2023-01-01', '2024-01-01'),
+('EMP003', 'reporting_prd_001', '2023-01-01', '2024-01-01'),
+('EMP004', 'reporting_prd_001', '2023-01-01', '2024-01-01'),
+('EMP005', 'reporting_prd_001', '2023-01-01', '2024-01-01'),
+('EMP006', 'reporting_prd_002', '2024-01-01', '2025-01-01'),
+('EMP007', 'reporting_prd_002', '2024-01-01', '2025-01-01'),
+('EMP008', 'reporting_prd_002', '2024-01-01', '2025-01-01'),
+('EMP009', 'reporting_prd_002', '2024-01-01', '2025-01-01'),
+('EMP010', 'reporting_prd_002', '2024-01-01', '2025-01-01'),
+('EMP011', 'reporting_prd_001', '2023-01-01', '2024-01-01'),
+('EMP012', 'reporting_prd_001', '2023-01-01', '2024-01-01'),
+('EMP013', 'reporting_prd_002', '2024-01-01', '2025-01-01'),
+('EMP014', 'reporting_prd_002', '2024-01-01', '2025-01-01'),
+('EMP015', 'reporting_prd_001', '2023-01-01', '2024-01-01'),
+('EMP016', 'reporting_prd_002', '2024-01-01', '2025-01-01'),
+('EMP017', 'reporting_prd_001', '2023-01-01', '2024-01-01'),
+('EMP018', 'reporting_prd_001', '2023-01-01', '2024-01-01'),
+('EMP019', 'reporting_prd_002', '2024-01-01', '2025-01-01'),
+('EMP020', 'reporting_prd_002', '2024-01-01', '2025-01-01');
+

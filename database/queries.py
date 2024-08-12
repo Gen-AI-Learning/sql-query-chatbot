@@ -14,6 +14,7 @@ def get_table_names() -> List[str]:
     # This SQL query works for SQLite, MySQL, and PostgreSQL
     refreshable_db.force_refresh()
     db = refreshable_db.get_db()
+    print(f"Connected to database: {db}")
     query = "SELECT name FROM sqlite_master WHERE type='table';"
     result = convert_to_list(db.run(query))
     if isinstance(result, str):

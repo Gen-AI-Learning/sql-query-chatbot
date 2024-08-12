@@ -46,24 +46,35 @@ class EnhancedSpellingCorrector:
 schema_info = {
     "Compliance": {
         "ComplianceID": [],
-        "ComplianceType": ["Accounting", "Technical", "Reporting", "Tax"],
+        "ComplianceType": ["Accounting", "Technical", "Reporting", "Tax","Functional"],
         "ComplianceTypeId": [],
         "MinCredits": []
     },
-    "User": {
+    "Employee": {
         "EmpId": [],
         "UserName": [],
         "MailId": [],
-        "UserStatus": ["Permanent", "Temporary", "Rehire", "Retired", "Terminated"],
-        "UserType": ["External", "PwC", "Vendor"],
+        "UserStatus": ["Active","LOP","Terminated"],
+        "UserType": ["Contractual", "Partner", "Permanent"],
         "ComplianceID": [],
-        "ReportingPeriod": []
     },
     "UserDashboard": {
         "UserId": [],
         "ReportingPeriod": [],
         "RPStartDate": [],
         "RPEndDate": []
+    },
+    "Creator":{
+        "creatorId":[],
+        "creatorName":[],
+        "isExternal": [],
+        "employeeId":[]
+    },
+    "Instructor":{
+        "instructorId":[],
+        "instructorName":[],
+        "isExternal": [],
+        "empId":[]
     },
     "Course": {
         "Title": [],
@@ -76,7 +87,9 @@ schema_info = {
         "Status": ["In Review", "Live", "Retired"],
         "Creator": [],
         "StatusDate": [],
-        "ComplianceID": []
+        "ComplianceID": [],
+        "InstructorId":[],
+        "CreatorId":[]
     },
     "Credit": {
         "CourseCode": [],
