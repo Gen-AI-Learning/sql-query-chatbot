@@ -22,7 +22,7 @@ cached_table_schema_tool = Tool(
 )
 
 # Tool to list table name
-list_tables_tool = Tool(
+list_tables_tool = StructuredTool.from_function(
     name="ListTablesTool",
     func=list_tables,
     description="Lists all available tables in the database."
